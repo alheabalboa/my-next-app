@@ -18,9 +18,9 @@ import {
   Phone,
   BadgeCheck,
   Quote,
-  Clock,
   FileText,
   HandCoins,
+  ChevronDown,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
@@ -162,19 +162,14 @@ export default function WhyUsPage() {
               <h1 className="mt-3 text-4xl sm:text-5xl lg:text-6xl font-semibold text-[var(--color-ink-900)] leading-[1.1]">
                 Why NE Calgary families choose Rundlehorn Smiles Dental
               </h1>
-              <div className="mt-6 max-w-xl rounded-2xl border-l-4 border-[var(--color-brand-500)] bg-white/70 px-5 py-4 text-[var(--color-ink-700)] shadow-sm">
-                <p className="text-xs font-semibold uppercase tracking-wider text-[var(--color-brand-600)]">
-                  Quick answer
-                </p>
-                <p className="mt-2 text-base leading-relaxed">
-                  Rundlehorn Smiles Dental is a family dental clinic at 6915
-                  Rundlehorn Dr NE, led by a team of four general dentists
-                  including Dr. Kevin R. Kalin, DDS. We serve Calgary&apos;s Rundle,
-                  Pineridge, Whitehorn, and Castleridge communities seven days a
-                  week, accept the Canadian Dental Care Plan, and offer free
-                  consults for implants, Invisalign, and wisdom-tooth removal.
-                </p>
-              </div>
+              <p className="mt-6 max-w-xl text-base leading-relaxed text-[var(--color-ink-700)]">
+                Rundlehorn Smiles Dental is a family dental clinic at 6915
+                Rundlehorn Dr NE, led by a team of four general dentists
+                including Dr. Kevin R. Kalin, DDS. We serve Calgary&apos;s Rundle,
+                Pineridge, Whitehorn, and Castleridge communities seven days a
+                week, accept the Canadian Dental Care Plan, and offer free
+                consults for implants, Invisalign, and wisdom-tooth removal.
+              </p>
               <div className="mt-8 flex flex-wrap gap-3">
                 <Button
                   href={clinic.bookingUrl}
@@ -490,22 +485,28 @@ export default function WhyUsPage() {
               Common questions about Rundlehorn Smiles Dental in NE Calgary
             </h2>
           </Reveal>
-          <div className="mt-10 max-w-3xl mx-auto grid gap-4">
-            {faqs.map(({ q, a }, i) => (
-              <Reveal
-                key={q}
-                delay={80 * i}
-                className="rounded-2xl bg-white border border-[var(--color-surface-mute)] p-6"
-              >
-                <h3 className="text-lg font-semibold text-[var(--color-ink-900)]">
-                  {q}
-                </h3>
-                <p className="mt-3 text-[var(--color-ink-500)] leading-relaxed">
-                  {a}
-                </p>
-              </Reveal>
-            ))}
-          </div>
+          <Reveal delay={120} className="mt-10 max-w-3xl mx-auto">
+            <ul className="divide-y divide-[var(--color-surface-mute)] rounded-2xl bg-white border border-[var(--color-surface-mute)] shadow-sm">
+              {faqs.map(({ q, a }, i) => (
+                <li key={q}>
+                  <details className="group" open={i === 0}>
+                    <summary className="flex items-center justify-between gap-4 px-6 py-5 cursor-pointer list-none">
+                      <span className="text-base sm:text-lg font-medium text-[var(--color-ink-900)]">
+                        {q}
+                      </span>
+                      <ChevronDown
+                        className="h-5 w-5 text-[var(--color-ink-500)] group-open:rotate-180 transition-transform shrink-0"
+                        aria-hidden
+                      />
+                    </summary>
+                    <div className="px-6 pb-5 text-[var(--color-ink-500)] leading-relaxed">
+                      {a}
+                    </div>
+                  </details>
+                </li>
+              ))}
+            </ul>
+          </Reveal>
         </Container>
       </Section>
 
@@ -515,9 +516,10 @@ export default function WhyUsPage() {
             <h2 className="text-3xl sm:text-4xl font-semibold">
               Ready to book with Rundlehorn Smiles Dental?
             </h2>
-            <p className="mt-4 max-w-xl mx-auto text-white/90 inline-flex items-center gap-2">
-              <Clock className="h-4 w-4" aria-hidden />
-              {clinic.hoursSummary}. Walk-ins welcome for emergencies.
+            <p className="mt-4 max-w-2xl mx-auto text-white/90 leading-relaxed">
+              We&apos;d love to meet you and your family. Whether it&apos;s your
+              first visit or your fiftieth, our team is here to make you feel
+              right at home — book online in under a minute or give us a call.
             </p>
             <div className="mt-8 flex flex-wrap justify-center gap-3">
               <Button

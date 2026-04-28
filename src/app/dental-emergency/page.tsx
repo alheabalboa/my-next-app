@@ -23,6 +23,7 @@ import {
   Stethoscope,
   Timer,
   Banknote,
+  ChevronDown,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
@@ -207,20 +208,15 @@ export default function EmergencyPage() {
               <h1 className="mt-3 text-4xl sm:text-5xl lg:text-6xl font-semibold text-[var(--color-ink-900)] leading-[1.1]">
                 Same-Day Dental Emergency Care in NE Calgary
               </h1>
-              <div className="mt-6 max-w-xl rounded-2xl border-l-4 border-[var(--color-brand-500)] bg-white/70 px-5 py-4 text-[var(--color-ink-700)] shadow-sm">
-                <p className="text-xs font-semibold uppercase tracking-wider text-[var(--color-brand-600)]">
-                  In pain right now?
-                </p>
-                <p className="mt-2 text-base leading-relaxed">
-                  Rundlehorn Smiles Dental keeps same-day emergency slots open
-                  at 6915 Rundlehorn Dr NE seven days a week. Our team,
-                  including Dr. Kevin R. Kalin, DDS (Harvard / Mass General
-                  oral and maxillofacial surgery residency), treats severe
-                  toothaches, knocked-out teeth, broken teeth, and abscesses
-                  for patients across Calgary&apos;s Rundle, Pineridge, Whitehorn,
-                  and Castleridge communities. Walk-ins welcome. CDCP accepted.
-                </p>
-              </div>
+              <p className="mt-6 max-w-xl text-base leading-relaxed text-[var(--color-ink-700)]">
+                Rundlehorn Smiles Dental keeps same-day emergency slots open
+                at 6915 Rundlehorn Dr NE seven days a week. Our team,
+                including Dr. Kevin R. Kalin, DDS (Harvard / Mass General
+                oral and maxillofacial surgery residency), treats severe
+                toothaches, knocked-out teeth, broken teeth, and abscesses
+                for patients across Calgary&apos;s Rundle, Pineridge, Whitehorn,
+                and Castleridge communities. Walk-ins welcome. CDCP accepted.
+              </p>
               <div className="mt-8 flex flex-wrap gap-3">
                 <Button href={clinic.phoneHref} size="lg">
                   <Phone className="h-4 w-4" aria-hidden />
@@ -577,22 +573,28 @@ export default function EmergencyPage() {
               Common questions about emergency dental care in NE Calgary
             </h2>
           </Reveal>
-          <div className="mt-10 max-w-3xl mx-auto grid gap-4">
-            {faqs.map(({ q, a }, i) => (
-              <Reveal
-                key={q}
-                delay={80 * i}
-                className="rounded-2xl bg-white border border-[var(--color-surface-mute)] p-6"
-              >
-                <h3 className="text-lg font-semibold text-[var(--color-ink-900)]">
-                  {q}
-                </h3>
-                <p className="mt-3 text-[var(--color-ink-500)] leading-relaxed">
-                  {a}
-                </p>
-              </Reveal>
-            ))}
-          </div>
+          <Reveal delay={120} className="mt-10 max-w-3xl mx-auto">
+            <ul className="divide-y divide-[var(--color-surface-mute)] rounded-2xl bg-white border border-[var(--color-surface-mute)] shadow-sm">
+              {faqs.map(({ q, a }, i) => (
+                <li key={q}>
+                  <details className="group" open={i === 0}>
+                    <summary className="flex items-center justify-between gap-4 px-6 py-5 cursor-pointer list-none">
+                      <span className="text-base sm:text-lg font-medium text-[var(--color-ink-900)]">
+                        {q}
+                      </span>
+                      <ChevronDown
+                        className="h-5 w-5 text-[var(--color-ink-500)] group-open:rotate-180 transition-transform shrink-0"
+                        aria-hidden
+                      />
+                    </summary>
+                    <div className="px-6 pb-5 text-[var(--color-ink-500)] leading-relaxed">
+                      {a}
+                    </div>
+                  </details>
+                </li>
+              ))}
+            </ul>
+          </Reveal>
         </Container>
       </Section>
 
@@ -606,9 +608,10 @@ export default function EmergencyPage() {
             <h2 className="mt-4 text-3xl sm:text-4xl font-semibold">
               In pain? Call us and we will see you today.
             </h2>
-            <p className="mt-4 max-w-xl mx-auto text-white/90 inline-flex items-center gap-2">
-              <Clock className="h-4 w-4" aria-hidden />
-              {clinic.hoursSummary}. Walk-ins welcome for emergencies.
+            <p className="mt-4 max-w-2xl mx-auto text-white/90 leading-relaxed">
+              You don&apos;t have to wait it out. Our friendly team is ready to
+              welcome you today — call now or book online, and we&apos;ll take
+              care of the rest. Walk-ins welcome, seven days a week.
             </p>
             <div className="mt-8 flex flex-wrap justify-center gap-3">
               <Button href={clinic.phoneHref} size="lg" variant="secondary">

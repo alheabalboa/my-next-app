@@ -52,9 +52,9 @@ export const FaqSection = () => (
       </Reveal>
       <Reveal delay={120} className="mt-10">
       <ul className="divide-y divide-[var(--color-surface-mute)] rounded-2xl bg-white border border-[var(--color-surface-mute)] shadow-sm">
-        {faqs.map((f) => (
+        {faqs.map((f, i) => (
           <li key={f.q}>
-            <details className="group">
+            <details className="group" open={i === 0}>
               <summary className="flex items-center justify-between gap-4 px-6 py-5 cursor-pointer list-none">
                 <span className="text-base sm:text-lg font-medium text-[var(--color-ink-900)]">
                   {f.q}

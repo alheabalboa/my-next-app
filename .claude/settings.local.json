@@ -12,7 +12,9 @@
       "Bash(git remote *)",
       "Bash(git push *)",
       "Bash(git branch *)",
-      "Bash(git subtree *)"
+      "Bash(git subtree *)",
+      "Bash(netstat -ano)",
+      "Bash(taskkill *)"
     ]
   }
 }
