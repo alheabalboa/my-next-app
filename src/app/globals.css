@@ -1,0 +1,120 @@
+@import "tailwindcss";
+
+/*
+ * Rundlehorn Smiles Dental — design tokens.
+ * Colors extracted from live site via scripts/extract-tokens.mjs (see design/tokens.json).
+ * Brand teal = #00a79d (primary CTA), #13a89e (tonal), #279db7 (secondary accent).
+ */
+
+@theme {
+  --color-brand-50: #e6f7f6;
+  --color-brand-100: #c0ebe8;
+  --color-brand-300: #5fc9c1;
+  --color-brand-500: #00a79d;
+  --color-brand-600: #008d84;
+  --color-brand-700: #006d66;
+  --color-brand-tonal: #13a89e;
+
+  --color-accent-500: #279db7;
+  --color-link: #046bd2;
+
+  --color-ink-900: #1a202c;
+  --color-ink-800: #33373d;
+  --color-ink-700: #334155;
+  --color-ink-500: #69727d;
+  --color-ink-400: #808285;
+  --color-ink-300: #a3a7ad;
+
+  --color-surface: #ffffff;
+  --color-surface-soft: #f8fafc;
+  --color-surface-mute: #eef2f6;
+
+  --font-sans: var(--font-body), system-ui, -apple-system, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  --font-heading: var(--font-serif), "Source Serif Pro", Georgia, "Times New Roman", serif;
+}
+
+@layer base {
+  body {
+    background-color: var(--color-surface);
+    color: var(--color-ink-700);
+    font-family: var(--font-sans);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    color: var(--color-ink-800);
+    font-family: var(--font-heading);
+    text-transform: capitalize;
+  }
+}
+
+/* FAQ accordion styling for inline <details>/<summary> in MDX (matches home FAQ). */
+article > details {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-surface-mute);
+  border-top-width: 0;
+}
+article > details:first-of-type {
+  border-top-width: 1px;
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+}
+article > details:last-of-type {
+  border-bottom-left-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+}
+article > details > summary {
+  list-style: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.25rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--color-ink-900);
+}
+@media (min-width: 640px) {
+  article > details > summary {
+    font-size: 1.125rem;
+  }
+}
+article > details > summary::-webkit-details-marker {
+  display: none;
+}
+article > details > summary::after {
+  content: "";
+  width: 1.25rem;
+  height: 1.25rem;
+  background-color: var(--color-ink-500);
+  -webkit-mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'/></svg>");
+  mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'/></svg>");
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  transition: transform 0.2s;
+  flex-shrink: 0;
+}
+article > details[open] > summary::after {
+  transform: rotate(180deg);
+}
+article > details > p {
+  padding: 0 1.5rem 1.25rem 1.5rem !important;
+  margin: 0 !important;
+  color: var(--color-ink-500) !important;
+  line-height: 1.625 !important;
+}
+
+.tooth-mask {
+  -webkit-mask-image: url('/imagery/tooth-mask.png');
+  mask-image: url('/imagery/tooth-mask.png');
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+}
