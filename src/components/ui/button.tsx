@@ -1,4 +1,5 @@
 import { forwardRef } from "react";
+import Link from "next/link";
 import { cn } from "@/lib/cn";
 
 type Variant = "primary" | "secondary" | "outline" | "ghost";
@@ -50,11 +51,28 @@ export const Button = forwardRef<
   const classes = cn(base, variants[variant], sizes[size], className);
 
   if ("href" in rest && rest.href !== undefined) {
+    const { href, ...anchorRest } = rest as React.AnchorHTMLAttributes<HTMLAnchorElement> & { href: string };
+    const isInternal = href.startsWith("/") && !href.startsWith("//");
+
+    if (isInternal) {
+      return (
+        <Link
+          ref={ref as React.Ref<HTMLAnchorElement>}
+          href={href}
+          className={classes}
+          {...anchorRest}
+        >
+          {children}
+        </Link>
+      );
+    }
+
     return (
       <a
         ref={ref as React.Ref<HTMLAnchorElement>}
+        href={href}
         className={classes}
-        {...(rest as React.AnchorHTMLAttributes<HTMLAnchorElement>)}
+        {...anchorRest}
       >
         {children}
       </a>
