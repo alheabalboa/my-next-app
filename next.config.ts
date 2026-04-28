@@ -5,7 +5,7 @@ const nextConfig: NextConfig = {
   output: "export",
   trailingSlash: true,
   basePath: "/my-next-app",
-  assetPrefix: "/my-next-app/",   // <-- add the slash here
+  assetPrefix: "/my-next-app/",   // <-- must end with a slash
   pageExtensions: ["ts", "tsx", "js", "jsx", "md", "mdx"],
   images: {
     unoptimized: true,
